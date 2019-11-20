@@ -6,7 +6,8 @@ var logger = require('morgan');
 //引入路由
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var robotRouter = require('./routes/robot')//运行
+var testRouter = require('./routes/test')//运行
 var app = express();
 
 // 选择渲染模板
@@ -21,6 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //配置路由
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/robot', robotRouter);
+app.use('/test', testRouter);
 
 // 404后要做的事
 app.use(function(req, res, next) {
