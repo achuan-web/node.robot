@@ -6,18 +6,6 @@ var express = require("express");
 var router = express.Router();
 const cheerio = require("cheerio");
 
-function fn(fn1) {
-    superagent.get("http://www.buka.cn/").end((err, res) => {
-        if (err) {
-            console.log(`err=>${err}`);
-            return fn1(srr)
-        }
-        list = getList(res);
-        return fn1(null, list)
-        //   console.log(list)
-    });
-};
-
 getList = res => {
     data = [];
     let $ = cheerio.load(res.text);
@@ -34,9 +22,9 @@ getList = res => {
     return data;
 };
 router.get("/", (req, res, next) => {
-    fn((err, data) => {
+    superagent.get("http://www.buka.cn/").end((err, res_) => {
         if (err) return res.send(err)
-        res.send(data);
-    })
+        res.send(getList(res));
+    });
 });
 module.exports = router;
