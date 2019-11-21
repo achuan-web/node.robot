@@ -47,6 +47,8 @@ router.get("/img", (req, res, next) => {
                 attr_name: ["href"]
             }
         ];
+        let fs = require('../fs')
+        // fs.download('./public/data/mamhua.json',get_list(res_, arr))//把数据写入文件
         res.send(get_list(res_, arr));
     });
 });
