@@ -82,7 +82,7 @@ let statSync = path => {
 
 var async = require("async");
 
-down_img = (arr, callback) => {
+let down_img = (arr, callback = () => {}) => {
     let arr_log = []
     arr.forEach((e, i) => {
         try {
