@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon ./bin/www.js -i ./public/data/"
+    "dev": "nodemon ./bin/www.js -i ./public/"
   },
   "dependencies": {
     "async": "^3.1.0",
@@ -13,6 +13,7 @@
     "ejs": "^2.7.4",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "jszip": "^3.2.2",
     "morgan": "~1.9.1",
     "nodemon": "^1.19.4",
     "superagent": "^5.1.0"
