@@ -1,7 +1,5 @@
 // 引入所需要的第三方包
 const superagent = require("superagent");
-var express = require("express");
-var router = express.Router();
 const cheerio = require("cheerio");
 //封装批量取节点
 /**
@@ -11,8 +9,9 @@ const cheerio = require("cheerio");
  * @param {string} arr{attr_name}  要取得属性名 
  * @param {function} callback  回调函数
  */
-let get_data = (path, arr, callback) => {
+let get_data = (path, arr,str, callback) => {
   //处理函数
+
   get_list = (res, arr) => {
     let array = []; //所有数据数组之和
     let $ = cheerio.load(res.text);
@@ -28,17 +27,25 @@ let get_data = (path, arr, callback) => {
       array[i_1] = data;
     });
     //合并多维数组
-    array = array[0].map((e, index) => {
-      for (let i = 0; i < array.length-1; ++i) {
-          Object.assign(e, array[i][i])
-          if(i = array.length-1){
+    if (str === true) {
+      if (array.length > 1) {
+        array.pop()
+        array = array[0].map((e, index) => {
+          for (let i = 0; i < array.length - 1; ++i) {
+            Object.assign(e, array[i][index])
+            if (i = array.length - 1) {
               return Object.assign(e, array[i][index])
+            }
           }
+        })
+      } else{
+        array = array[0]
       }
-  })
+    }
+    if (array.length = 1) array = array[0]
+
     return array;
   };
-
   superagent.get(path).end((err, res_) => {
     if (err) return callback(err);;
     let result = get_list(res_, arr);

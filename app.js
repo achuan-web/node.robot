@@ -4,12 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //引入路由
-var usersRouter = require('./routes/users');
-var robotRouter = require('./routes/robot')//运行
 var bukaRouter = require('./routes/buka')//运行
 var manhuaRouter = require('./routes/manhua')//运行
 var indexRouter = require('./routes/index')//运行
-require('./routes/zip')//运行
+// require('./routes/zip')//运行
 var app = express();
 
 // 选择渲染模板
@@ -22,8 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //配置路由
-app.use('/users', usersRouter);
-app.use('/robot', robotRouter);
 app.use('/buka', bukaRouter);
 app.use('/manhua', manhuaRouter);
 app.use('/', indexRouter);

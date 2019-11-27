@@ -17,30 +17,31 @@ let arr = [
         attr_name: ["src", "alt"]
     },
     {
-        selectors: "a",
+        selectors: " ul li a",
         attr_name: ["href","title"]
-    },
-        true
+    }
     ]
-
-    // arr.prototype.is_true = ()=>{return true}
 router.get('/', (req, res, next) => {
-        http('https://manhua.dmzj.com/', arr,true, (err, result) => {
+        http('https://manhua.dmzj.com/', arr, (err, result) => {
+    
             err ? res.send(err) : res.send(result)
+            // let fs = require('../public/javascripts/fs.js')
+            // fs.down_img(result)
         })
 })
 router.get('/search', (req, res, next) => {
     let { s } = req.query
-    let url_ = 'https://manhua.dmzj.com/tags/search.shtml?s='+s
-    url = encodeURI(url_)
-    http(url, arr_search,true, (err, result) => {
-        // console.log(err , result)
+    console.log('s',s)
+    http('https://manhua.dmzj.com/tags/search.shtml?s='+s, arr_search,true, (err, result) => {
+        
         err ? res.send(err) : res.send(result)
+        // let fs = require('../public/javascripts/fs.js')
+        // fs.down_img(result)
     })
 })
 router.get('/detail/', (req, res, next) => {
     let { url } = req.query
-    http('https://manhua.dmzj.com/'+url+'/', arr_detail, (err, result) => {
+    http('https://manhua.dmzj.com/'+url+'/', arr_detail,true, (err, result) => {
 
         err ? res.send(err) : res.send(result)
         // let fs = require('../public/javascripts/fs.js')
