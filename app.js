@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/buka', bukaRouter);
 app.use('/manhua', manhuaRouter);
 app.use('/', indexRouter);
-
+require('./routes/1')
 // 404后要做的事
 app.use(function(req, res, next) {
   next(createError(404));

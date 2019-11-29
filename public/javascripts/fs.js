@@ -19,6 +19,7 @@ let writeFileSync = (path, data) => {
 let readFileSync = path => {
     try {
         let result = fs.readFileSync(path);
+        result = JSON.parse(result)
         return [null, result];
     } catch (error) {
         return [error];
@@ -80,18 +81,17 @@ let statSync = path => {
 // if(err) console.log(err)
 // else console.log(type,stats)
 
-var async = require("async");
-
-let down_img = (arr, callback = () => {}) => {
+let down_img = (arr,callback = () => {}) => {
     let arr_log = []
     arr.forEach((e, i) => {
         try {
-            let imgName = e.alt + '.jpg';
+            let imgName =  i+'.jpg' ||e.alt + '.jpg';
             //下载图片存放到指定目录
-            let stream = fs.createWriteStream(`./public/images/${imgName}`);
-            let req = superagent.get(e.src); //响应流
+            let stream =  fs.createWriteStream(`./public/images/${imgName}`);
+            let req =  superagent.get(e.src); //响应流
             req.pipe(stream); //将刘输入文件
             arr_log[i] = `${i} is ok`
+            console.log(`${i} is ok`)
         } catch (error) {
             arr_log[i] = `${i} is err =>${error}`
         }
