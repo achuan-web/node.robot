@@ -14,7 +14,7 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-console.log(`serve run is http://localhost:${process.env.PORT||'3000/manhua/'}`)
+console.log(`serve run is http://localhost:${process.env.PORT||'3000/'}`)
 /**
  * Create HTTP server.
  */

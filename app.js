@@ -7,10 +7,14 @@ var logger = require('morgan');
 var bukaRouter = require('./routes/buka')//运行
 var manhuaRouter = require('./routes/manhua')//运行
 var indexRouter = require('./routes/index')//运行
+// var indexRouter = require('./routes/index')//运行
 // require('./routes/zip')//运行
 var app = express();
 
 // 选择渲染模板
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -23,7 +27,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/buka', bukaRouter);
 app.use('/manhua', manhuaRouter);
 app.use('/', indexRouter);
-require('./routes/1')
 // 404后要做的事
 app.use(function(req, res, next) {
   next(createError(404));
